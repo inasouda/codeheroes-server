@@ -18,7 +18,7 @@ const corsOptions = {
 
 app.use(express.json());  
 app.use("/api/v1/students",studentsRouter);
-app.use("/api/v1/freeLesson",freeLessonrouter);
+app.use("/api/v1/free-lesson",freeLessonrouter);
 
 
 const port = process.env.PORT || 3000;
