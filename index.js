@@ -6,9 +6,16 @@ const cors = require('cors');
 
 const app = express();
 
-app.use(express.json());
-app.use(cors())
-    
+// Configure CORS
+const corsOptions = {
+    origin: 'https://codeheroes.vercel.app', // Replace with your frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow the methods you need
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+  };
+  
+  app.use(cors(corsOptions));
+
+app.use(express.json());  
 app.use("/api/v1/students",studentsRouter);
 
 const port = process.env.PORT || 3000;
