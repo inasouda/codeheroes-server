@@ -1,0 +1,110 @@
+import React from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+const StudentForm = () => {
+    const formik = useFormik({
+        initialValues: {
+            studentNameA: '',
+            studentNameE: '',
+            dob: '',
+            gender: '',
+            schoolName: '',
+            grade: '',
+            motherNm: '',
+            motherWANm: '',
+            fatherNm: '',
+            fatherWANm: '',
+            address: '',
+            postalCode: '',
+            originCountry: '',
+            allergies: '',
+            email: '',
+            mainLang: '',
+            prevKayanStudent: false,
+            prevAnySchoolStudent: false,
+            knowUs: '',
+            program: '',
+            arabicLevel: ''
+        },
+        validationSchema: Yup.object({
+            studentNameA: Yup.string()
+                .min(3, 'Student name in Arabic must be at least 3 characters long')
+                .max(50, 'Student name in Arabic must be at most 50 characters long')
+                .required('Student name in Arabic is required'),
+            studentNameE: Yup.string()
+                .min(3, 'Student name in English must be at least 3 characters long')
+                .max(50, 'Student name in English must be at most 50 characters long')
+                .required('Student name in English is required'),
+            dob: Yup.date().required('Date of birth is required'),
+            gender: Yup.string().oneOf(['Male', 'Female'], 'Gender must be either Male or Female').required('Gender is required'),
+            schoolName: Yup.string().required('School name is required'),
+            grade: Yup.string().oneOf([
+                'PRE-K', 'Kindergarten', 'Grade 1', 'Grade 2', 'Grade 3',
+                'Grade 4', 'Grade 5', 'Grade 6', 'Grade 7', 'Grade 8',
+                'Grade 9', 'Grade 10', 'Grade 11', 'Grade 12'
+            ], 'Grade must be a valid school grade').required('Grade is required'),
+            motherNm: Yup.string().required('Mother\'s name is required'),
+            motherWANm: Yup.string().required('Mother\'s WhatsApp number is required'),
+            address: Yup.string().required('Address is required'),
+            postalCode: Yup.string().min(6, 'Postal code must be at least 6 characters long').required('Postal code is required'),
+            originCountry: Yup.string().required('Origin country is required'),
+            allergies: Yup.string().required('Allergies information is required'),
+            email: Yup.string().email('Email must be a valid email address').min(7, 'Email must be at least 7 characters long').max(250, 'Email must be at most 250 characters long').required('Email is required'),
+            mainLang: Yup.string().oneOf(['English', 'Arabic', 'French', 'Others'], 'Main language must be one of: English, Arabic, French, Others').required('Main language is required'),
+            prevKayanStudent: Yup.boolean().required('Previous Kayan student status is required'),
+            prevAnySchoolStudent: Yup.boolean().required('Previous school student status is required'),
+            knowUs: Yup.string().required('How did you know about us is required'),
+            program: Yup.string().oneOf(['Full Program', 'Preschoolers Program'], 'Program must be either Full Program or Preschoolers Program').required('Program is required'),
+            arabicLevel: Yup.string().required('Arabic level is required')
+        }),
+        onSubmit: values => {
+            console.log(JSON.stringify(values, null, 2));
+        }
+    });
+
+    return (
+        <form onSubmit={formik.handleSubmit}>
+            <div>
+                <label htmlFor="studentNameA">Student Name (Arabic)</label>
+                <input
+                    id="studentNameA"
+                    name="studentNameA"
+                    type="text"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.studentNameA}
+                />
+                {formik.touched.studentNameA && formik.errors.studentNameA ? (
+                    <div>{formik.errors.studentNameA}</div>
+                ) : null}
+            </div>
+            
+            {/* Repeat similar blocks for other fields */}
+            
+            <div>
+                <label htmlFor="gender">Gender</label>
+                <select
+                    id="gender"
+                    name="gender"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.gender}
+                >
+                    <option value="" label="Select gender" />
+                    <option value="Male" label="Male" />
+                    <option value="Female" label="Female" />
+                </select>
+                {formik.touched.gender && formik.errors.gender ? (
+                    <div>{formik.errors.gender}</div>
+                ) : null}
+            </div>
+
+            {/* ... */}
+            
+            <button type="submit">Submit</button>
+        </form>
+    );
+};
+
+export default StudentForm;
