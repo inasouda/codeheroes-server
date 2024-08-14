@@ -2,6 +2,7 @@ require('dotenv').config();
 require("./db");
 const express = require('express');
 const studentsRouter = require('./routes/students.router');
+const freeLessonrouter = require('./routes/free-lesson.router')
 const cors = require('cors');
 
 const app = express();
@@ -17,6 +18,8 @@ const corsOptions = {
 
 app.use(express.json());  
 app.use("/api/v1/students",studentsRouter);
+app.use("/api/v1/freeLesson",freeLessonrouter);
+
 
 const port = process.env.PORT || 3000;
 app.listen(port,()=>{
