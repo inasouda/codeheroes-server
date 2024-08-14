@@ -9,7 +9,7 @@ const app = express();
 // Configure CORS
 const corsOptions = {
     origin: 'https://codeheroes.vercel.app', // Replace with your frontend URL
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow the methods you need
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Allow the methods you need
     allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
   };
   
