@@ -19,7 +19,7 @@ const requestFreeLessonSchema = new Schema({
   },
   day: {
     type: String,
-    enum: ['Friday Aug 30, 5:00PM', 'Saturday Aug 31, 5:00PM', 'Friday Sep 6, 5:00PM'],
+    // enum: ['Friday Aug 30, 5:00PM', 'Saturday Aug 31, 5:00PM', 'Friday Sep 6, 5:00PM'],
     required: true,
   },
 }, { timestamps: true });
