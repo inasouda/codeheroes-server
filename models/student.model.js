@@ -68,7 +68,7 @@ const studentSchema = new mongoose.Schema({
         required: [true, 'Lesson day is required'],
         enum: {
             values: ['Wednesday', 'Thursday', 'Monday', 'Friday'],
-            message: 'Lesson day must be either Wednesday or Thursday'
+            message: 'Lesson day must be either Wednesday, Thursday, Monday, or Friday'
         }
     },
     comments: {
